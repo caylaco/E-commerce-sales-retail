@@ -1,0 +1,28 @@
+-- How many customers are in each city?
+SELECT 
+city,
+COUNT(*) AS city_count
+FROM `personal-projects-340200.basic_retail.customers` 
+group by city
+order by city_count DESC
+
+-- How many orders per day?
+SELECT count(order_id) AS order_count, order_date
+FROM `personal-projects-340200.basic_retail.orders` 
+group by order_date
+order by order_date
+-- Which days are the most popular?
+SELECT count(order_id) AS order_count, order_date
+FROM `personal-projects-340200.basic_retail.orders` 
+group by order_date
+order by order_count DESC
+it looks like the earlier months are the most popular for this company with an outlier day in november 2023. That was vetrans day and another top selling days was around memorial
+day, maybe this comapany does will with the military or their holiday sales.
+--using inner join
+select
+order_id, orders.customer_id, products.product_id, products.product_name, products.category, orders.quantity, products.price
+from `personal-projects-340200.basic_retail.orders` AS orders
+join `personal-projects-340200.basic_retail.products` AS products
+on orders.product_id = products.product_id
+order by order_id
+
